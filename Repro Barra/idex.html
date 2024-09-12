@@ -19,12 +19,12 @@
         /* Estilo del contenedor del reproductor */
         .player-container {
             position: fixed;
-            top: 0;
+            bottom: 0;
             left: 0;
             width: 100%;
-            height: 100%; /* Ocupa toda la pantalla */
-            z-index: 5000; /* Asegura que esté por encima de otros elementos */
-            background: transparent; /* Fondo transparente para permitir interacción con otros elementos */
+            height: 80px; /* Altura del reproductor */
+            background: transparent;
+            z-index: 5000;
         }
         
         .player-container iframe {
@@ -35,14 +35,10 @@
         
         /* Estilo del contenedor de la página principal */
         .content-container {
-            position: absolute;
-            top: 0;
-            left: 0;
             width: 100%;
-            height: 100%;
-            z-index: 1000; /* Asegura que esté por debajo del reproductor */
-            overflow: auto;
-            padding-bottom: 80px; /* Espacio para el reproductor si es necesario */
+            height: 100vh; /* Ocupa toda la altura de la ventana del navegador */
+            padding-bottom: 80px; /* Espacio para el reproductor en la parte inferior */
+            box-sizing: border-box; /* Incluye el padding en el tamaño total */
         }
         
         .content-frame {
