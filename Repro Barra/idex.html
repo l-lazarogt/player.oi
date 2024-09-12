@@ -35,10 +35,10 @@
         
         /* Estilo del contenedor de la página principal */
         .content-container {
+            position: relative;
             width: 100%;
-            height: 100vh; /* Ocupa toda la altura de la ventana del navegador */
-            padding-bottom: 80px; /* Espacio para el reproductor en la parte inferior */
-            box-sizing: border-box; /* Incluye el padding en el tamaño total */
+            height: calc(100vh - 80px); /* Altura total menos la altura del reproductor */
+            overflow: auto; /* Permite el desplazamiento si el contenido es más alto que la vista */
         }
         
         .content-frame {
