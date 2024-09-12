@@ -1,0 +1,129 @@
+/* Reset estilos por defecto */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body, html {
+    font-family: 'Source Sans Pro', sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.2;
+}
+
+h1, h2, h3, p {
+    margin: 0;
+    font-weight: 400;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}   
+
+
+.coverPage {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.coverPage::before {
+    content: '';
+    display: block;
+    position: absolute; 
+    background: black;
+    opacity: .8;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+}
+
+.__coverPage-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    color: white;
+    height: 50%;
+    width: 50%;
+    z-index: 1000;
+    text-align: center;
+    opacity: .9;
+    padding: 1em;
+}
+
+.__coverPage-content h1 {
+    font-size: 3em;
+    background-image: linear-gradient(45deg, #0033A0, #FFFFFF, #0033A0);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    opacity: .8;
+}
+
+.__coverPage-content h2 {
+    font-size: 2em;
+    margin-bottom: 1.5em;
+}
+
+.__coverPage-content h3 {
+    font-size: 1em;
+    margin-bottom: .8em;
+    text-transform: uppercase;
+    opacity: .7;
+}
+
+.__coverPage-content p {
+    font-size: 1em; /* Cambiado a unidad relativa */
+    margin-bottom: 1.5em;
+    line-height: 1.5;
+    opacity: .7;
+}
+
+.socialIcon {
+    margin-right: 10px;
+    opacity: .7;
+}
+
+.socialIcon i {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2em; /* Cambiado a unidad relativa */
+    border: 2px solid white;
+    border-radius: 50%;
+    padding: 0.75em; /* Cambiado a unidad relativa */
+    height: 1.25em; /* Cambiado a unidad relativa */
+    width: 1.25em; /* Cambiado a unidad relativa */
+    transition: all .3s;
+}
+
+.socialIcon i:hover {
+    color: #0033A0;
+    border-color: #0033A0;
+}
+
+/* Estilos para dispositivos de escritorio */
+@media screen and (min-width: 1025px) {
+    .coverPage {
+        background-image: url('/assets/img/background_pc.png');
+    }
+}
+
+/* Estilos para dispositivos móviles */
+@media screen and (max-width: 1024px) {
+    .coverPage {
+        background-image: url('/assets/img/background_movil.png');
+    }
+}
+
+@media screen and (min-width: 321px) and (max-width: 1023px) {
+    .__coverPage-content {
+        width: 100%;
+    }
+}

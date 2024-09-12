@@ -1,0 +1,229 @@
+
+<script>
+stream = "https://rr5100.globalhost1.com/8354/stream";
+server = "https://rr5100.globalhost1.com:7176";
+</script>
+
+
+<meta content="width=device-width, initial-scale=1" name="viewport">
+<link href='https://use.fontawesome.com/releases/v5.15.4/css/all.css' rel='stylesheet'/>
+<link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'/>
+<link href='css/style.css?v=001' rel='stylesheet'/>
+<script src='https://code.jquery.com/jquery-3.6.4.min.js'></script>
+
+<style>
+body{margin:0px}
+input[type=range].amplitude-volume-slider{-webkit-appearance:none;transform:rotate(270deg);background:#000}
+input[type=range].amplitude-volume-slider:focus{outline:0;background:#000}
+input[type=range].amplitude-volume-slider::-webkit-slider-runnable-track{width:100%;height:10px;cursor:pointer;animate:.2s;background:#E20A16;border-radius:10px}
+input[type=range].amplitude-volume-slider::-webkit-slider-thumb{height:17px;width:17px;border-radius:10px;background:#fff;border:2px solid #E20A16;cursor:pointer;margin-top:-4px;-webkit-appearance:none}
+
+input[type=range].amplitude-volume-slider:focus::-webkit-slider-runnable-track{background:#E20A16;border-radius:10px}
+input[type=range].amplitude-volume-slider::-moz-range-track{width:100%;height:10px;cursor:pointer;animate:.2s;background:#E20A16;border-radius:10px}
+input[type=range].amplitude-volume-slider::-moz-range-thumb{height:17px;width:17px;border-radius:10px;background:#fff;border:2px solid #c92222;cursor:pointer;margin-top:-4px}
+
+input[type=range].amplitude-volume-slider::-ms-track{width:100%;height:1px;cursor:pointer;animate:.2s;background:0 0;border-color:transparent;border-width:15px 0;color:transparent}
+input[type=range].amplitude-volume-slider::-ms-fill-lower{background:#000;border-radius:10px}
+input[type=range].amplitude-volume-slider::-ms-fill-upper{background:#000;border-radius:10px}
+input[type=range].amplitude-volume-slider::-ms-thumb{height:10px;width:10px;border-radius:10px;background:#fff;cursor:pointer;margin-top:2px}
+input[type=range].amplitude-volume-slider:focus::-ms-fill-lower{background:#000}
+input[type=range].amplitude-volume-slider:focus::-ms-fill-upper{background:#000}
+input[type=range].amplitude-volume-slider::-ms-tooltip{display:none}
+</style>
+
+<div class="msp_radio" style="">
+<div class="np__global_wrapper">
+<div id="jp_container_rcast" class="np__global_player">
+
+<div class="np__full_player_page"><div class="np__container_bg" style="background:url(img/fondo.png);"></div>
+
+<div class="np__player_page_section np__player_page_section_a np__sidebar_wrapper">
+<div class="np__page_section_menu">
+<ul class="np__section_nav_tabs">
+<li class="np__section_nav_tabs_prev_mobile"><a class="np__info_program_previous_btn"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"></path><path fill="none" d="M0 0h24v24H0V0z"></path></svg></a></li>
+<li class="np__tab__active"><a>Historial</a></li>
+</ul>
+
+<div class="np__section_tabs_content">
+<div class="np__tab_pane np__tab_pane__active np__fade np__in">
+<div class="np__tab_pane np__tab_pane__active np__in np__fade">
+<div class="np__tab_pane_container">
+<ul class="history np__sound_badge">
+<script>
+(function($){
+function SHOUTcast(opt){
+this.playedInterval = opt.playedInterval || opt.interval ||  30000;
+this.statsInterval = opt.statsInterval || opt.interval || 5000;
+this._played = opt.played || function(){};
+}
+
+SHOUTcast.prototype.played = function(fn){
+var that = this, url= server+'/played?sid=1&type=json&ra='+Math.random();
+$.ajax({
+url : url,
+dataType : 'jsonp',
+timeout : 2000,
+success : function(data){
+if(!data instanceof Array){
+return; 
+}
+fn && fn.call(that,data);
+that._played(data);
+}
+});
+return this;
+};
+
+
+SHOUTcast.prototype.startPlayed = function(){
+this.stopPlayed();
+this.played();
+this._playedinterval = setInterval($.proxy(this.played,this),this.playedInterval);
+return this;
+};
+
+SHOUTcast.prototype.stopPlayed = function(){
+this._playedinterval && clearInterval(this._playedinterval);
+return this;
+};
+
+$.SHOUTcast = function(opt){
+return new SHOUTcast(opt);
+};
+}(window.jQuery));
+
+
+$.SHOUTcast({
+interval:40000,played:
+function(datx) {
+$(".history").html("");
+var $ii = 0;
+$.each(datx,function(xxxx,curti) {
+
+var $curTitle = curti.title;
+var $myarray = $curTitle.split(" - ");
+var $artistName = $myarray[0];
+var $songTitle = $myarray[1];
+var urfot = "https://itunes.apple.com/search?term=="+$artistName+"&media=music&limit=1";
+
+$.ajax({dataType:"jsonp",url:urfot,success:function(covx) {
+if(covx.results.length== 1)
+{
+$srccurCover = covx.results[0].artworkUrl100;
+$srccurCover = $srccurCover.replace("100x100","200x200")
+}
+$(".history").append('<li class="np__sound_badge_item"><div class="np__item_box_img"><img src="'+ $srccurCover+'" alt="Poster" class="fadeIn undefined"><div class="np__img_overlay"></div></div><div class="np__item_box_text"><p class="np__item_song np__truncate">'+ $songTitle+'</p><p class="np__item_artist">'+ $artistName+'</p><div class="np__item_more_info"><span class="np__info_time np__info_time__onair"><div class="np__equalizer np__equalizer"><div></div><div></div><div></div></div>Sonó el :'+new Date((curti.playedat+ 3600)* 1000).toISOString().substr(11,8)+'</span></div></div></li>')
+}
+})
+
+
+
+if($ii=== 8){return false}
+$ii++
+})
+}
+}).startPlayed();
+
+
+function diff_minutes(aaa,bbb) {
+if(!bbb){return "0"}
+var ccc = new Date(bbb);
+var ddd =(aaa.getTime()- ccc.getTime())/ 1000;//80
+ddd/= 60;return Math.abs(Math.round(ddd))
+}
+</script>
+</ul>
+</div></div></div></div></div></div>
+
+<div class="np__player_page_section np__page_content_wrapper">
+<div class="np__controls_float"><button id="cierra" class="fas fa-chevron-down np__btn_controls moreless"></button></div>
+<div class="np__player_page_header">
+<div class="np__header_left"><button id="historial" class="fas fa-bars np__btn_controls"></button></div>
+<div class="np__header_center"><img class="np__header_center_logo" src="img/logo.png"></div>
+</div>
+
+<div class="np__player_card"><div class="np__player_card_img"><img src="img/portada.png" class="portada"></div><div class="np__soundbadge_info_top"><span><div class="np__soundbadge_info_small np__soundbadge_onair" style="opacity: 1;"><div class="np__soundbadge_ecualizer"><div class="np__equalizer"><div></div><div></div><div></div></div><span>al aire</span></div></div></span></div>
+<p class="np__player_song">La Original Voz Del Hogar</p><p class="np__player_artist">Online</p>
+<div class="np__player_controls_principal">
+<div class="np__btn_controls_volume_container">
+<button class="fa amplitude-mute np__btn_controls"></button>
+<div class="np__player_volume_container">
+<input class="amplitude-volume-slider" type="range" />
+</div>
+</div>
+
+<button class="fa amplitude-play-pause np__btn_controls np__btn_controls_play"></button>
+
+</div></div>
+</div></div>
+
+
+
+<div class="np__player_widget">
+<div class="np__controls_elements np__elements_soundbadge">
+<div class="np__container_bg" style="background:url(img/fondo.png;"></div>
+<picture class="np__avatar_element"><img class="fadeIn np__avatar_element_image portada" src="img/portada.png"></picture><div class="np__soundbadge_info"><div class="np__soundbadge_info_top"><span><div class="np__soundbadge_info_small np__soundbadge_onair" style="opacity: 1;"><div class="np__soundbadge_ecualizer"><div class="np__equalizer"><div></div><div></div><div></div></div><span>al aire</span></div></div></span><span class="np__soundbadge_info_small np__program_name">La Original Voz Del Hogar</span></div><div class="np__soundbadge_info_principal"><span class="np__info_principal np__program_subtitle">Sonando En Vivo</span></div></div>
+</div>
+<div class="np__controls_elements np__elements_play_controls">
+<div class="np__btn_controls_volume_container">
+<button class="fa amplitude-mute np__btn_controls"></button>
+<div class="np__player_volume_container">
+<input class="amplitude-volume-slider" type="range" />
+</div>
+</div>
+<button class="fas fa-step-backward np__btn_controls disabled"></button>
+<button class="fa amplitude-play-pause np__btn_controls np__btn_controls_play"></button>
+<button class="fas fa-step-forward np__btn_controls disabled"></button>
+
+</div>
+
+</div>
+</div></div></div>
+
+
+
+<script src="js/repro.js"></script>
+<script>Amplitude.init({songs: [{url:stream, live:!0,}],volume:100});</script>
+
+<script>
+function metadata() {
+$.ajax ({ url:"api.php?url="+stream, type:"GET", dataType:"text", crossDomain:!0, async:true, success: function(data){
+xtit = data;
+myArray = xtit.split("-");
+portadax(myArray[0]);
+
+$(".np__program_subtitle, .np__player_artist, .np__share_artist").text(myArray[0]);
+$(".np__program_name, .np__player_song, .np__share_song").text(myArray[1]);
+}
+});
+}
+setTimeout(function(){metadata();}, 1000);
+setInterval(function(){metadata();}, 10000);
+
+
+function portadax(name) {
+url = "https://itunes.apple.com/search?term=="+name+"&media=music&limit=1";
+$.getJSON (url, function (datax) {
+imx = datax.results[0].artworkUrl100;
+imx = imx.replace("100x100bb", "500x500bb");
+$(".portada").attr('src', imx);
+$(".np__container_bg").css("background", "url("+imx+") center/cover");
+});
+}
+</script>
+
+<script>
+$("#cierra").click(function(){
+$(".np__global_player").toggleClass("np__fullscreen");});
+
+$(".np__btn_controls_volume_container").hover(function(){
+$(".np__player_volume_container").toggleClass("np__visible");});
+
+$("#redes, #redes2, #closeredes").click(function(){
+$(".np__content_dialog").toggleClass("redex");});
+
+$("#historial, .np__section_nav_tabs_prev_mobile").click(function(){
+$(".np__page_content_wrapper").toggleClass("sidebarOpen");
+$(".np__player_page_section_a").toggleClass("opened");
+});
+</script>
